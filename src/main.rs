@@ -1,19 +1,23 @@
-use crate::{lexer::*, tokens::TokenKind};
+use crate::{app::app, lex::lex, tokens::TokenKind};
 
-mod lexer;
+mod app;
+mod lex;
+mod mode;
+mod pos;
 mod tokens;
 
 fn main() {
-    for tokens in lex("input { by usr }") {
-        eprintln!(
-            "{}\n",
-            match tokens {
-                TokenKind::End => String::from("end"),
-                TokenKind::Eq => String::from("="),
-                TokenKind::Identifier(content) => content,
-                TokenKind::CloseBracket => String::from("}"),
-                _ => String::from("..."),
+    app(|instruction: String| {
+        let tokens: Vec<TokenKind> = lex(&instruction);
+
+        for token in tokens {
+            match token {
+                TokenKind::If => println!("if"),
+                TokenKind::Assignment => println!(":="),
+                _ => println!("???"),
             }
-        );
-    }
+        }
+
+        todo!("change this ^^^^^^^^^^")
+    });
 }
