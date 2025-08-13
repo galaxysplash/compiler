@@ -1,5 +1,5 @@
 pub enum TokenKind {
-    Struct,
+    Collection,
 
     OpenBracket,
     CloseBracket,
@@ -10,8 +10,9 @@ pub enum TokenKind {
     NewLine,
 
     If,
-    Then,
-    End,
+    Colon,
+
+    Space,
 
     Eq,
     UnEq,

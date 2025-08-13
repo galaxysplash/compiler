@@ -7,7 +7,11 @@ pub fn app<Lambda: Fn(String)>(cycle: Lambda) {
         ModeKind::File(path) => match std::fs::read_to_string(path) {
             Ok(content) => cycle(content),
             Err(e) => {
-                eprintln!("going in terminal instead of file mode due to: Error({e})");
+                eprintln!(
+                    "(going in terminal, instead
+                    of file mode due to: Error({e})"
+                );
+
                 terminal(&cycle);
             }
         },
@@ -34,7 +38,7 @@ fn get_mode() -> ModeKind {
         panic!("No arguments given!")
     }
 
-    match std::env::args().next() {
+    match args.next() {
         Some(path) => ModeKind::File(path),
         None => ModeKind::Terminal,
     }

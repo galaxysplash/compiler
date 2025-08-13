@@ -1,6 +1,6 @@
 pub fn cut(uncut_string: &str) -> Vec<String> {
-    const EXCLUDED_CUTOUTS: [char; 1] = [' '];
-    const INCLUDED_CUTOUTS: [char; 5] = ['(', ')', '{', '}', '\t'];
+    const EXCLUDED_CUTOUTS: [char; 0] = [];
+    const INCLUDED_CUTOUTS: [char; 5] = [' ', '(', ')', '{', '}'];
     const FORBIDDEN: [char; 1] = ['\t'];
 
     let mut cut_string: Vec<String> = vec![];
